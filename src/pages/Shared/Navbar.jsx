@@ -1,9 +1,9 @@
-import React, { use } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router';
-import { AuthContext } from '../../context/AuthContext/AuthContext';
+import UseAuth from '../../Hooks/UseAuth';
 
 const Navbar = () => {
-    const { user, userSignOut } = use(AuthContext)
+    const { user, userSignOut } = UseAuth();
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
 
@@ -13,7 +13,7 @@ const Navbar = () => {
             .then(() => {
                 console.log('logged out');
             })
-            .catch((err)=>{
+            .catch((err) => {
                 console.log(err);
             })
     }

@@ -2,9 +2,17 @@ import React, { use } from 'react';
 import signInLottie from '../../assets/signIn.json'
 import Lottie from 'lottie-react';
 import { AuthContext } from '../../context/AuthContext/AuthContext';
+import { useLocation, useNavigate } from 'react-router';
 
 const Register = () => {
-    const {   signIn } = use(AuthContext);
+    const { signIn } = use(AuthContext);
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state || '/';
+
+
     const handleSignIn = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -13,19 +21,21 @@ const Register = () => {
 
         console.log(email, password);
 
-         signIn(email, password)
-        .then(res=>{
-            const user = res.user;
-            console.log(user);
-        })
-        .catch(err=>{
-            console.log(err);
-        })
+        signIn(email, password)
+            .then(res => {
+                const user = res.user;
+
+                // console.log(user);
+                navigate(from);
+            })
+            .catch(err => {
+                console.log(err);
+            })
 
 
     }
 
-    
+
 
     return (
         <div className="hero bg-base-200 min-h-screen">

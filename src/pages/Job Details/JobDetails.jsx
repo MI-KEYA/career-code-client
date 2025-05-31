@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router';
+import { Link, useLoaderData } from 'react-router';
 import { LiaIndustrySolid } from "react-icons/lia";
 import { MdOutlineCategory, MdOutlineDateRange, MdOutlineLocationOn, MdOutlinePayments, MdOutlineSubtitles } from "react-icons/md";
 import { FiDollarSign } from "react-icons/fi";
@@ -9,6 +9,7 @@ const JobDetails = () => {
     const data = useLoaderData();
     console.log(data);
     const {
+        _id,
         title,
         applicationDeadline,
         salaryRange,
@@ -82,7 +83,9 @@ const JobDetails = () => {
                     </div>
 
                 </div>
-                <button className='btn mt-5 btn-primary'>Apply Now</button>
+                <Link to={`/jobApply/${_id}`}>
+                    <button className='btn mt-5 btn-primary'>Apply Now</button>
+                </Link>
             </div>
         </div>
     );
